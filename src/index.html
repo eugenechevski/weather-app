@@ -4,10 +4,97 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap" rel="stylesheet">
     <title>Weather Application</title>
-
 </head>
 <body>
-    <h1>Hi there!</h1>
+    <div class="relative font-main antialiase w-screen h-screen dark:text-white">
+        <!-- Background -->
+        <div class="dark:bg-gray-900 border-black h-full w-full custom-background z-0 absolute transition-all duration-1000"></div>
+    
+        <!-- Mode switch -->
+        <div class="mode-switch dark:border-white z-50 p-1 mt-5 ml-5 border border-black rounded-full absolute top-0 left-0 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+        </div>
+
+        <!-- Home button -->
+        <i class="icon-home transition-all duration-1000 delay-150 hidden z-50 cursor-pointer text-lg absolute top-0 right-0 mt-5 mr-5 border border-black rounded-full p-1"></i>
+    
+        <!-- Home page -->
+        <div class="home-content transition-all duration-700 delay-150 flex flex-col justify-center items-center h-full w-full">
+            <i class="transition-all duration-700 delay-150 hidden animate-spin spinner icon-spinner text-center text-6xl text-black dark:text-white"></i>
+            <div class="transition-all duration-700 delay-150 status-message mx-auto text-xl md:text-2xl text-center font-light italic animate-bounce">
+                Let's see what the day has brought for us.
+            </div>
+            <form class="transition-all duration-700 delay-150 home-form flex flex-col z-50 mt-3 w-[75%] md:w-1/2" novalidate>
+                <input class="home-search dark:text-black peer transition-all ease-in-out duration-500 focus:shadow-xl text-center border p-1 focus:outline-none border-black rounded-lg h-9" 
+                       placeholder="Type a city name..."
+                       type="search" 
+                       name="" 
+                       id="">
+                <span class="home-error rounded-lg text-center bg-red-600"></span>
+                <button type="submit" class="submit-button dark:border-white mt-3 self-center border border-black rounded-full w-1/3 md:w-1/6 visible peer-placeholder-shown:invisible">Search</button>
+            </form>
+        </div>
+    
+        <!-- Weather view -->
+        <div class="view-content transition-all duration-700 delay-150 relative p-3 flex flex-col h-full w-full rounded-md opacity-0">
+            <div class="mb-1 columns-2 gap-x-1 rounded-md h-1/2">
+                <div class="border border-black dark:border-white rounded-lg flex flex-col justify-center items-center h-full">
+                    <div class="temperature-data text-center font-extrabold text-4xl sm:text-6xl md:text-8xl w-full">22 C&#176;</div>
+                    <div class="description-data text-center font-light text-xl sm:text-2xl md:text-4xl w-full">Partly cloudy</div>
+                </div>
+                <div class="relative border border-black dark:border-white rounded-lg flex flex-col justify-center items-center h-full">
+                    <div class="city-name text-center text-4xl sm:text-6xl md:text-8xl font-light w-full">London</div>
+                    <div class="city-time text-center text-4xl sm:text-6xl md:text-8xl font-bold w-full">12:00 PM</div>
+                </div>
+            </div>
+            <div class="text-center columns-4 gap-x-1 rounded-md h-1/2">
+                <div class="flex flex-col justify-center items-center gap-y-6 h-full border border-black dark:border-white rounded-lg">
+                    <div class="text-xs xs:text-xl sm:text-2xl md:text-4xl">
+                        Pressure
+                    </div>
+                    <i class="text-4xl sm:text-6xl md:text-8xl inline-block icon-barometer"></i>
+                    <div class="pressure-data text-xs xs:text-xl sm:text-2xl md:text-4xl">
+                        1023mb
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center items-center gap-y-6 h-full border border-black dark:border-white rounded-lg">
+                    <div class="text-xs xs:text-xl sm:text-2xl md:text-4xl">
+                        Humidity
+                    </div>
+                    <i class="text-4xl sm:text-6xl md:text-8xl inline-block icon-humidity"></i>
+                    <div class="humidity-data text-xs xs:text-xl md:text-4xl">
+                        87%
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center items-center gap-y-6 h-full border border-black dark:border-white rounded-lg">
+                    <div class="text-xs xs:text-xl sm:text-2xl md:text-4xl">
+                        Visibility
+                    </div>
+                    <i class="text-4xl sm:text-6xl md:text-8xl inline-block icon-visibility"></i>
+                    <div class="visibility-data text-xs xs:text-xl md:text-4xl">
+                        16km
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center items-center gap-y-6 h-full border border-black dark:border-white rounded-lg">
+                    <div class="text-xs xs:text-xl sm:text-2xl md:text-4xl">
+                        Wind Speed
+                    </div>
+                    <i class="text-4xl sm:text-6xl md:text-8xl inline-block icon-wind-speed"></i>
+                    <div class="wind-speed-data text-xs xs:text-xl md:text-4xl">
+                        1.5m/s
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
