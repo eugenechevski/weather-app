@@ -4,8 +4,46 @@ import dataRetriever from './dataRetriever';
 export default function (): Renderer {
   let weatherAPI: DataRetriever;
 
-  function handleChangeMode(): void {
-    document.body.classList.toggle('dark');
+  async function handleChangeMode(): Promise<any> {
+    if (!document.body.classList.contains('dark')) {
+      // Reveal the moon and stars
+      DOMNodes.spriteMoon.classList.remove('hidden');
+      DOMNodes.spriteStars.classList.remove('hidden');
+      DOMNodes.spriteMoon.classList.add('flex');
+      DOMNodes.spriteStars.classList.add('flex');
+    } else {
+      // Reveal the sun and clouds
+      DOMNodes.spriteSun.classList.remove('hidden');
+      DOMNodes.spriteClouds.classList.remove('hidden');
+      DOMNodes.spriteSun.classList.add('flex');
+      DOMNodes.spriteClouds.classList.add('flex');
+    }
+
+    await new Promise((res) => {
+      setTimeout(() => {
+        document.body.classList.toggle('dark');
+        res('');
+      });
+    });
+
+    await new Promise((res) => {
+      setTimeout(() => {
+        if (!document.body.classList.contains('dark')) {
+          // Hide the moon and stars
+          DOMNodes.spriteMoon.classList.remove('flex');
+          DOMNodes.spriteMoon.classList.add('hidden');
+          DOMNodes.spriteStars.classList.remove('flex');
+          DOMNodes.spriteStars.classList.add('hidden');
+        } else {
+          // Hide the sun and clouds
+          DOMNodes.spriteSun.classList.remove('flex');
+          DOMNodes.spriteSun.classList.add('hidden');
+          DOMNodes.spriteClouds.classList.remove('flex');
+          DOMNodes.spriteClouds.classList.add('hidden');
+        }
+        res('');
+      }, 500);
+    });
   }
 
   async function displayViewContent(): Promise<any> {
@@ -176,6 +214,10 @@ export default function (): Renderer {
   }
 
   function initNodes(): void {
+    DOMNodes.spriteSun = document.querySelector('.sun');
+    DOMNodes.spriteClouds = document.querySelector('.clouds');
+    DOMNodes.spriteMoon = document.querySelector('.moon');
+    DOMNodes.spriteStars = document.querySelector('.stars');
     DOMNodes.homeSearch = document.querySelector('.home-search');
     DOMNodes.homeForm = document.querySelector('.home-form');
     DOMNodes.homeErrorMessage = document.querySelector('.home-error');

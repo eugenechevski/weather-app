@@ -1,4 +1,8 @@
 export namespace DOMNodes {
+  export let spriteSun: HTMLElement;
+  export let spriteClouds: HTMLElement;
+  export let spriteMoon: HTMLElement;
+  export let spriteStars: HTMLElement;
   export let homeSearch: HTMLInputElement;
   export let homeContent: HTMLElement;
   export let homeForm: HTMLElement;
