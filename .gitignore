@@ -350,10 +350,8 @@ MigrationBackup/
 .ionide/
 
 # Custom
+.vscode
 todo.md
 assignment.md
-.*
 sketch
-*config*
 package*
-*.d.ts
